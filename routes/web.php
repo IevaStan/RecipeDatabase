@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\RecipeController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -33,4 +34,11 @@ require __DIR__.'/auth.php';
 Route::get('/', function(){
     return 'Veikia';
 });
+
+Route::get('recipes', [RecipeController::class, 'index']);
+Route::get('recipes/{id}', [RecipeController::class, 'show'])->whereNumber('id');
+Route::get('recipes/create', [RecipeController::class, 'create']);
+Route::any('recipes/edit/{id}', [RecipeController::class, 'edit'])->name('recipe.edit');
+Route::post('recipes/store', [RecipeController::class, 'store']);
+Route::delete('recipes/delete/{id}', [RecipeController::class, 'delete'])->name('recipe.delete');
 
