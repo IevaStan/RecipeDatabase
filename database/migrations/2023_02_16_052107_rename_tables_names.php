@@ -16,6 +16,7 @@ return new class extends Migration
         // Schema::rename('ingredient', 'ingredients');
     }
 
+
     /**
      * Reverse the migrations.
      *
