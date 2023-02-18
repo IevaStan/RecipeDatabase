@@ -19,7 +19,6 @@
         <th scope="col" width="100">ID</th>
         <th scope="col">Name</th>
         <th scope="col">Active ingredient?</th>
-
         <th scope="col" width="100">Edit</th>
         <th scope="col" width="100">Delete</th>
     </tr>
@@ -29,7 +28,11 @@
         <td class="list-group-flush">
             <a href="{{ url('ingredients', ['id' => $ingredient->id]) }}" class="list-group-item list-group-item-action">{{ $ingredient->name }}</a>
         </td>
-        <td>{{ $ingredient->is_active }}</td>
+        <td>
+            @if($ingredient->is_active) {{'Yes'}}
+            @else{{'No'}}
+            @endif
+        </td>
         <td>
             <a href="{{ route('ingredient.edit', ['id' => $ingredient->id]) }}" class="btn btn-primary">Edit</a>
         </td>

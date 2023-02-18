@@ -79,7 +79,7 @@
             @if($recipe->ingredients)
 
             @foreach($recipe->ingredients as $ingredient)
-            {{ $ingredient->full_name }} <br>
+            {{ $ingredient->name }} <br>
             @endforeach
 
             @endif

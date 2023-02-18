@@ -23,10 +23,14 @@
     @foreach($categories as $category)
     <tr>
         <th scope="row">{{ $category->id }}</th>
-        <td class="list-group-flush" >
+        <td class="list-group-flush">
             <a href="{{ url('categories', ['id' => $category->id]) }}" class="list-group-item list-group-item-action">{{ $category->name }}</a>
         </td>
-        <td>{{ $category->is_active }}</td>
+        <td>
+            @if($category->is_active) {{'Yes'}}
+            @else{{'No'}}
+            @endif
+        </td>
         <td>
             <a href="{{ route('category.edit', ['id' => $category->id]) }}" class="btn btn-primary">Edit</a>
         </td>
