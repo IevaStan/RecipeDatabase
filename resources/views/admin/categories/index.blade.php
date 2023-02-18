@@ -16,6 +16,7 @@
     <tr>
         <th scope="col" width="100">Id</th>
         <th scope="col">Category name</th>
+        <th scope="col">Recipe(s) in this category</th>
         <th scope="col">Active category?</th>
         <th scope="col" width="100">Edit</th>
         <th scope="col" width="100">Delete</th>
@@ -25,6 +26,14 @@
         <th scope="row">{{ $category->id }}</th>
         <td class="list-group-flush">
             <a href="{{ url('categories', ['id' => $category->id]) }}" class="list-group-item list-group-item-action">{{ $category->name }}</a>
+        </td>
+        <td>
+            @if($category->recipes)
+                @foreach($category->recipes as $recipe)
+                <a href="{{ url('recipes', ['id' => $recipe->id]) }}" 
+                class="list-group-item list-group-item-action">{{ $recipe->name }}</a>
+                @endforeach
+            @endif
         </td>
         <td>
             @if($category->is_active) {{'Yes'}}

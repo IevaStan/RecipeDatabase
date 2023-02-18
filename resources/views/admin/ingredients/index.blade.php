@@ -18,6 +18,7 @@
     <tr>
         <th scope="col" width="100">ID</th>
         <th scope="col">Name</th>
+        <th scope="col">Recipe(s) with this ingredient</th>
         <th scope="col">Active ingredient?</th>
         <th scope="col" width="100">Edit</th>
         <th scope="col" width="100">Delete</th>
@@ -27,6 +28,14 @@
         <th scope="row">{{ $ingredient->id }}</th>
         <td class="list-group-flush">
             <a href="{{ url('ingredients', ['id' => $ingredient->id]) }}" class="list-group-item list-group-item-action">{{ $ingredient->name }}</a>
+        </td>
+        <td>
+            @if($ingredient->recipes)
+                @foreach($ingredient->recipes as $recipe)
+                <a href="{{ url('recipes', ['id' => $recipe->id]) }}" 
+                class="list-group-item list-group-item-action">{{ $recipe->name }}</a>
+                @endforeach
+            @endif
         </td>
         <td>
             @if($ingredient->is_active) {{'Yes'}}
