@@ -27,7 +27,8 @@
     <tr>
         <th scope="row">{{ $ingredient->id }}</th>
         <td class="list-group-flush">
-            <a href="{{ url('ingredients', ['id' => $ingredient->id]) }}" class="list-group-item list-group-item-action">{{ $ingredient->name }}</a>
+            <a href="{{ url('ingredients', ['id' => $ingredient->id]) }}" 
+            class="list-group-item list-group-item-action">{{ $ingredient->name }}</a>
         </td>
         <td>
             @if($ingredient->recipes)

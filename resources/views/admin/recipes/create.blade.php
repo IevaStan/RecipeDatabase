@@ -6,7 +6,7 @@
 
 @include('components.alert.success_message')
 
-<h1>Add a new recipe</h1>
+<h1>Create a new recipe</h1>
 
 @if ($errors->any())
 <div class="alert alert-danger">
@@ -23,7 +23,8 @@
     @csrf
     <div class="form-group">
         <label class="form-label">Name:</label>
-        <input type="text" name="name" value="{{ old('name') }}" class="form-control @error('name') is-invalid @enderror" placeholder="Recipe name">
+        <input type="text" name="name" value="{{ old('name') }}" 
+        class="form-control @error('name') is-invalid @enderror" placeholder="Recipe name">
         @error('name')
         <div class="invalid-feedback">{{ $message }}</div><br>
         @enderror
@@ -53,7 +54,9 @@
 
     <div class="form-group">
         <label class="form-label">Description:</label>
-        <input type="text" name="description" value="{{ old('description') }}" class="form-control @error('description') is-invalid @enderror" placeholder="Recipe description and preparation method">
+        <input type="text" name="description" value="{{ old('description') }}" 
+        class="form-control @error('description') is-invalid @enderror" 
+        placeholder="Recipe description and preparation method">
         @error('description')
         <div class="invalid-feedback">{{ $message }}</div><br>
         @enderror

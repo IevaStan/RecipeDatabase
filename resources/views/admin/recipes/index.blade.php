@@ -4,7 +4,7 @@
 
 @section('content')
 
-<h1>Recipes page</h1>
+<h1>Our recipes</h1>
 
 @include('components.alert.success_message')
 
@@ -14,7 +14,7 @@
             <div class="form-group">
 
                 <div class="form-group">
-                    <label class="form-label">Name:</label>
+                    <label class="form-label">Search recipe by name:</label>
                     <input type="text" name="name" value="{{ $name }}" class="form-control" placeholder="Recipe name">
                 </div>
 
@@ -64,7 +64,8 @@
     <tr>
         <th scope="row">{{ $recipe->id }}</th>
         <td class="list-group-flush">
-            <a href="{{ url('recipes', ['id' => $recipe->id]) }}" class="list-group-item list-group-item-action">{{ $recipe->name }}</a>
+            <a href="{{ url('recipes', ['id' => $recipe->id]) }}" 
+            class="list-group-item list-group-item-action">{{ $recipe->name }}</a>
         </td>
         <td>
             <div class="col-md-4 px-0">
