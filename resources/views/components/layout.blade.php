@@ -7,39 +7,39 @@
 <body>
     <nav class="navbar navbar-expand-md navbar-dark bg-primary mb-4">
         <div class="container">
-            <a class="navbar-brand" href="#">YummyRecipes</a>
+            <img src="https://cdn.cdnlogo.com/logos/m/2/my-recipes.svg" width="70" height="24">
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarCollapse">
                 <ul class="navbar-nav me-auto mb-2 mb-md-0">
                     <li class="nav-item">
-                        <a href="#" class="nav-link" aria-current="page" href="#">Recipes</a>
+                        <a href="{{ url('recipes') }}" class="nav-link" aria-current="page" href="#">Recipes</a>
                     </li>
                     <li class="nav-item">
-                        <a href="#" class="nav-link" aria-current="page" href="#">Categories</a>
+                        <a href="{{ url('categories') }}" class="nav-link" aria-current="page" href="#">Categories</a>
                     </li>
                     <li class="nav-item">
-                        <a href="#" class="nav-link" aria-current="page" href="#">Ingredients</a>
+                        <a href="{{ url('ingredients') }}" class="nav-link" aria-current="page" href="#">Ingredients</a>
                     </li>
                 </ul>
 
                 <ul class="navbar-nav ms-auto mb-2 mb-md-0 ">
                     @auth
                     <li class="nav-item">
-                        <a href="#" class="nav-link" aria-current="page">User profile</a>
+                        <a href="{{ url('profile') }}" class="nav-link" aria-current="page">{{ auth()->user()->name }} profile</a>
                     </li> @endauth
                     <li class="nav-item">
                         @guest
-                        <a href="#" class="nav-link" aria-current="page">Login</a>
+                        <a href="{{ route('login') }}" class="nav-link" aria-current="page">Login</a>
                         @endguest
                         @auth
-                        <a href="#" class="nav-link" aria-current="page">Logout</a>
+                        <a href="{{ route('logout') }}" class="nav-link" aria-current="page">Logout</a>
                         @endauth
                     </li>
                     <li class="nav-item">
                         @guest
-                        <a href="#" class="nav-link" aria-current="page">Signup</a>
+                        <a href="{{ route('register') }}" class="nav-link" aria-current="page">Signup</a>
                         @endguest
                     </li>
                 </ul>
@@ -54,9 +54,9 @@
     <div class="container">
         <footer class="py-3 my-4">
             <ul class="nav justify-content-center border-bottom pb-3 mb-3">
-                <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">Recipes</a></li>
-                <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">Categories</a></li>
-                <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">Ingredients</a></li>
+                <li class="nav-item"><a href="{{ url('recipes') }}" class="nav-link px-2 text-muted">Recipes</a></li>
+                <li class="nav-item"><a href="{{ url('categories') }}" class="nav-link px-2 text-muted">Categories</a></li>
+                <li class="nav-item"><a href="{{ url('ingredients') }}" class="nav-link px-2 text-muted">Ingredients</a></li>
             </ul>
             <p class="text-center text-muted">&copy; 2023 Projektą sukūrė: Ieva S.</p>
         </footer>

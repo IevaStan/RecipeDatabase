@@ -24,17 +24,14 @@ class RecipeController extends Controller
         if ($request->query('name')) {
             $recipes->where('name', 'like', '%' . $request->query('name') . '%');
         }
-        $recipes = $recipes->paginate(10);
 
         $categories = Category::where('is_active', '=', 1)->get();
         return view('admin/recipes/index', [
-            'recipes' => $recipes,
+            'recipes' => $recipes->paginate(10),
             'categories' => $categories,
             'category_id' => $request->query('category_id'),
             'name' => $request->query('name'),
         ]);
-
-        return view('admin/recipes/index', ['recipes' => $recipes]);
     }
 
 
@@ -87,7 +84,7 @@ class RecipeController extends Controller
             $recipe->ingredients()->detach();
 
             $file = $request->file('image');
-            $path = $file->store('recipe');
+            $path = $file->store('recipe_images');
             Storage::disk('public')->put('katalogas', $file);
             $recipe->image = $path;
             $recipe->save();
@@ -131,6 +128,8 @@ class RecipeController extends Controller
 
         $ingredients = Ingredient::find($request->post('ingredient_id'));
         $recipe->ingredients()->attach($ingredients);
+        $recipe->category()->attach($request->post('category_id'));
+
 
         return redirect('recipes')
             ->with('success', 'New recipe successfully added!');

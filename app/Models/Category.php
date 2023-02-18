@@ -17,13 +17,18 @@ class Category extends Model
         'is_active'
     ];
 
+    protected $attributes = [
+        'is_active' => false
+    ];
 
     public function recipes(): HasMany
     {
         return $this->hasMany(Recipe::class);
     }
-    // public function category(): BelongsTo
-    // {
-    //     return $this->belongsTo(Category::class, 'category_id');
-    // }
+
+    public function ingredients(): HasMany
+    {
+        return $this->hasMany(Ingredient::class);
+    }
+
 }
