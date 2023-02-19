@@ -7,7 +7,7 @@
 <body>
     <nav class="navbar navbar-expand-md navbar-dark bg-primary mb-4">
         <div class="container">
-            <img src="https://cdn.cdnlogo.com/logos/m/2/my-recipes.svg" width="70" height="24">
+            <img src="php artisan vendor:publish --tag=jetstream-views" width="70" height="24">
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>

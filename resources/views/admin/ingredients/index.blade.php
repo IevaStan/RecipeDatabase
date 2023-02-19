@@ -56,4 +56,9 @@
     </tr>
     @endforeach
 </table>
+<div class="row">
+    <div class="col">
+        {{ $ingredients->links()}}
+    </div>
+</div>
 @endsection

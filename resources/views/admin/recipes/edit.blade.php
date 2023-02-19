@@ -47,9 +47,8 @@ class="row g-3" enctype="multipart/form-data">
     <div class="form-group">
         <label class="form-label">Category:</label>
         <select name="category_id" class="form-control @error('category_id') is-invalid @enderror">
-            <option value="">-</option>
             @foreach($categories as $category)
-            <option value="{{ $category->id }}">{{ $category->name }}</option>
+            <option value="{{ $category->id }}" @if($category->id === $recipe->category_id) selected @endif>{{ $category->name }}</option>
             @endforeach
         </select>
         @error('category_id')<div class="invalid-feedback">{{ $message }}</div>@enderror

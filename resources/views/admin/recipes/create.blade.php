@@ -45,8 +45,9 @@
     <div class="form-group">
         <label class="form-label">Category:</label>
         <select name="category_id" class="form-control">
+        <option value="">Select category</option>
             @foreach($categories as $category)
-            <option value="{{ $category->id }}">{{ $category->name }}</option>
+            <option value="{{ $category->id }}" @if($category->id) selected @endif>{{ $category->name }}</option>
             @endforeach
         </select>
     </div>

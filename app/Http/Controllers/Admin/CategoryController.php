@@ -12,7 +12,7 @@ class CategoryController extends Controller
 {
     public function index(): View
     {
-        $categories = Category::all();
+        $categories = Category::where('is_active', '=', 1)->paginate(5);
         return view('admin/categories/index', [
             'categories' => $categories
         ]);

@@ -110,8 +110,8 @@ class RecipeController extends Controller
         $request->validate(
             [
                 'name' => 'required|max:255',
-                'category_id' => 'required',
-                'ingredient_id' => 'required',
+                'category' => 'required',
+                // 'ingredient_id' => 'required',
                 'image' => [File::types([
                     'jpg', 'jpeg', 'jfif', 'webp', 'avif',  'svg',
                     'gif',  'png',  'tif',  'tiff',  'bmp'

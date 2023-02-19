@@ -55,4 +55,9 @@
     </tr>
     @endforeach
 </table>
+<div class="row">
+    <div class="col">
+        {{ $categories->links()}}
+    </div>
+</div>
 @endsection
