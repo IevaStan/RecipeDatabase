@@ -18,11 +18,11 @@ class RecipeController extends Controller
     public function index(Request $request): View
     {
         $recipes = Recipe::query();
-        if ($request->query('category_id')) {
-            $recipes->where('category_id', '=', $request->query('category_id'));
-        }
         if ($request->query('name')) {
             $recipes->where('name', 'like', '%' . $request->query('name') . '%');
+        }
+        if ($request->query('category_id')) {
+            $recipes->where('category_id', '=', $request->query('category_id'));
         }
 
         $categories = Category::where('is_active', '=', 1)->get();
@@ -85,10 +85,13 @@ class RecipeController extends Controller
             $recipe->update($request->all());
             $recipe->ingredients()->detach();
 
-            $file = $request->file('image');
-            $path = $file->store('recipe_images');
-            Storage::disk('public')->put('katalogas', $file);
-            $recipe->image = $path;
+            if ($request->file('image')) {
+                $file = $request->file('image');
+                $path = $file->store('recipe_images');
+                Storage::disk('public')->put('katalogas', $file);
+                $recipe->image = $path;
+            }
+            
             $recipe->save();
 
             $ingredients = Ingredient::find($request->post('ingredient_id'));
@@ -110,7 +113,7 @@ class RecipeController extends Controller
         $request->validate(
             [
                 'name' => 'required|max:255',
-                'category' => 'required',
+                'category_id' => 'required',
                 // 'ingredient_id' => 'required',
                 'image' => [File::types([
                     'jpg', 'jpeg', 'jfif', 'webp', 'avif',  'svg',
@@ -130,13 +133,10 @@ class RecipeController extends Controller
 
         $ingredients = Ingredient::find($request->post('ingredient_id'));
         $recipe->ingredients()->attach($ingredients);
-        $recipe->category()->attach($request->post('category_id'));
-
 
         return redirect('recipes')
             ->with('success', 'New recipe successfully added!');
     }
-
 
     public function delete(int $id)
     {

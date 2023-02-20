@@ -15,7 +15,7 @@ class IngredientSeeder extends Seeder
      */
     public function run()
     {
-        for ($i = 0; $i < 100; $i++) {
+        for ($i = 0; $i < 50; $i++) {
             Ingredient::create([
                 'name' => fake()->name,
                 'is_active' => fake()->boolean,

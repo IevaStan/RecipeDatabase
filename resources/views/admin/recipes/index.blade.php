@@ -20,7 +20,7 @@
 
                 <label class="form-label">Select the category:</label>
                 <select name="category_id" class="form-control">
-                    <option>---</option>
+                    <option value="">---</option>
                     @foreach($categories as $category)
                     <option @if($category->id == $category_id) selected @endif
                         value="{{ $category->id }}">{{ $category->name }}
@@ -64,13 +64,12 @@
     <tr>
         <th scope="row">{{ $recipe->id }}</th>
         <td class="list-group-flush">
-            <a href="{{ url('recipes', ['id' => $recipe->id]) }}" 
-            class="list-group-item list-group-item-action">{{ $recipe->name }}</a>
+            <a href="{{ url('recipes', ['id' => $recipe->id]) }}" class="list-group-item list-group-item-action">{{ $recipe->name }}</a>
         </td>
         <td>
             <div class="col-md-4 px-0">
                 @if($recipe->image)
-                <img src="{{ $recipe->image }}" class="img-fluid ">
+                <img src="{{ asset($recipe->image) }}" class="img-fluid ">
                 @else
                 no image
                 @endif
@@ -86,7 +85,9 @@
             @endif
         </td>
         <td>
-            {{ $recipe->category }}
+            @if($recipe->category)
+                {{ $recipe->category->name }}
+            @endif
         </td>
         <td>{{ $recipe->description }}</td>
         <td>

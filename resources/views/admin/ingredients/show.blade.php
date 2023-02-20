@@ -33,14 +33,19 @@
     </div>
     <div class="card-body">
         <a href="{{ url('categories', ['id' => $recipe->category_id]) }}" 
-        class="list-group-item list-group-item-action">Category: {{ $recipe->category }}.</a><br>
+            class="list-group-item list-group-item-action">
+            Category:
+                @if($recipe->category )
+                {{ $recipe->category->name }}.
+                @endif
+        </a><br>
         <ol class="list-group list-group-numbered">
             Ingredients:
-            @if($recipe->ingredients)
-                @foreach($recipe->ingredients as $ingredient)
-                <p class="list-group-item list-group-item-action list-group-item-secondary">{{ $ingredient->name }}</p>
-                @endforeach
-            @endif
+                @if($recipe->ingredients)
+                    @foreach($recipe->ingredients as $ingredient)
+                    <p class="list-group-item list-group-item-action list-group-item-secondary">{{ $ingredient->name }}</p>
+                    @endforeach
+                @endif
         </ol>
         <p class="card-text">Description and preparation method: {{ $recipe->description }}</p>
     </div>
@@ -51,7 +56,8 @@
 <br>
 
 <div class="btn-group" role="group">
-    <div><a href="{{ route('ingredient.edit', ['id' => $ingredient->id]) }}" class="btn btn-primary">Edit</a></div>
+    <div><a href="{{ route('ingredient.edit', ['id' => $ingredient->id]) }}" 
+    class="btn btn-primary">Edit</a></div>
     <form action="{{ route('ingredient.delete', ['id' => $ingredient->id]) }}" method="post">
         @csrf
         @method('DELETE')

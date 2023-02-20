@@ -13,10 +13,14 @@ class Recipe extends Model
 
     protected $fillable = [
         'name',
-        'category',
+        'category_id',
         'description',
         'is_active'
     ];
+    protected $attributes = [
+        'is_active' => false
+    ];
+
     public function ingredients(): BelongsToMany
     {
         return $this->belongsToMany(Ingredient::class);

@@ -31,7 +31,6 @@ class IngredientController extends Controller
         $request->validate(
             [
                 'name' => 'required|max:20',
-                'is_active' => 'required',
             ]
         );
 
@@ -69,7 +68,6 @@ class IngredientController extends Controller
             $request->validate(
                 [
                     'name' => 'required|max:20',
-                    'is_active' => 'required',
                 ]
             );
             $ingredient->update($request->all());
@@ -81,6 +79,4 @@ class IngredientController extends Controller
             'ingredient' => $ingredient
         ]);
     }
-
-
 }

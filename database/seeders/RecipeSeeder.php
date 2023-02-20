@@ -18,11 +18,9 @@ class RecipeSeeder extends Seeder
         for ($i = 0; $i < 10; $i++) {
             Recipe::create([
                 'name' => fake()->name,
-                'category' => fake()->name,
                 'description' => fake()->name,
                 'is_active' => fake()->boolean,
             ]);
         }
-
     }
 }
