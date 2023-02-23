@@ -1,6 +1,6 @@
-@extends('components.layout')
+@extends('components.layoutmin')
 
-@section('title', 'Recipes')
+@section('title', 'Get inspired')
 
 @section('content')
 
@@ -10,7 +10,7 @@
 
 <div class="row">
     <div class="col">
-        <form action="{{ url('recipes') }}" method="get">
+        <form action="{{ url('public/recipes') }}" method="get">
             <div class="form-group">
 
                 <div class="form-group">
@@ -35,7 +35,7 @@
                     <button type="submit" class="btn btn-primary">Filter</button>
                 </div>
                 <div>
-                    <a href=" {{ url('recipes') }}" class="btn btn-secondary">Clear filter</a>
+                    <a href=" {{ url('public/recipes') }}" class="btn btn-secondary">Clear filter</a>
                 </div>
             </div>
             <br>
@@ -43,10 +43,6 @@
 
         </form>
     </div>
-</div>
-
-<div class="row">
-    <div class="col"> <a href="{{ url('recipes/create') }}" class="btn btn-primary">Create</a> </div>
 </div>
 
 <table class="table">
@@ -57,14 +53,12 @@
         <th scope="col">Ingredient(s)</th>
         <th scope="col">Category</th>
         <th scope="col">Description</th>
-        <th scope="col" width="100">Edit</th>
-        <th scope="col" width="100">Delete</th>
     </tr>
     @foreach($recipes as $recipe)
     <tr>
         <th scope="row">{{ $recipe->id }}</th>
         <td class="list-group-flush">
-            <a href="{{ url('recipes', ['id' => $recipe->id]) }}" class="list-group-item list-group-item-action">{{ $recipe->name }}</a>
+            <a href="{{ url('public/recipes', ['id' => $recipe->id]) }}" class="list-group-item list-group-item-action">{{ $recipe->name }}</a>
         </td>
         <td>
             <div class="col-md-4 px-0">
@@ -86,20 +80,12 @@
         </td>
         <td>
             @if($recipe->category)
-                {{ $recipe->category->name }}
+            {{ $recipe->category->name }}
             @endif
         </td>
         <td>{{ $recipe->description }}</td>
-        <td>
-            <a href="{{ route('recipe.edit', ['id' => $recipe->id]) }}" class="btn btn-primary">Edit</a>
-        </td>
-        <td>
-            <form action="{{ route('recipe.delete', ['id' => $recipe->id]) }}" method="post">
-                @csrf
-                @method('DELETE')
-                <button type="submit" class="btn btn-danger">Delete</button>
-            </form>
-        </td>
+
+
     </tr>
     @endforeach
 </table>

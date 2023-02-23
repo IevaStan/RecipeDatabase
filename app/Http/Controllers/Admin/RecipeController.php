@@ -59,7 +59,7 @@ class RecipeController extends Controller
     }
 
 
-    public function edit(int $id, Request $request)
+    public function edit(int $id, Request $request): RedirectResponse|View
     {
         $recipe = Recipe::find($id);
         $ingredients = Ingredient::all();
@@ -88,10 +88,10 @@ class RecipeController extends Controller
             if ($request->file('image')) {
                 $file = $request->file('image');
                 $path = $file->store('recipe_images');
-                Storage::disk('public')->put('katalogas', $file);
+                Storage::disk('public')->put('recipe_images', $file);
                 $recipe->image = $path;
             }
-            
+
             $recipe->save();
 
             $ingredients = Ingredient::find($request->post('ingredient_id'));
@@ -125,8 +125,8 @@ class RecipeController extends Controller
         $recipe = Recipe::create($request->all());
 
         $file = $request->file('image');
-        $path = $file->store('recipe_images');
-        Storage::disk('public')->put('katalogas', $file);
+        // $path = $file->store('recipe_images');
+        $path = Storage::disk('public')->put('recipe_images', $file);
         $recipe->image = $path;
         $recipe->save();
 

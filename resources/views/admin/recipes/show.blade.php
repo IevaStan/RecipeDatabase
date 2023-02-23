@@ -12,7 +12,7 @@
 
 <div class="card" style="width: 36rem">
     @if($recipe->image)
-    <img src="{{ asset($recipe->image) }}" class="card-img-top" alt="recipe picture">
+        <img src="{{ asset('storage/' . $recipe->image) }}" class="img-fluid ">
     @else
     no image
     @endif

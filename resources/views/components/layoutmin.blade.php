@@ -7,7 +7,7 @@
 <body>
     <nav class="navbar navbar-expand-md navbar-dark bg-primary mb-4">
         <div class="container">
-            <a class="navbar-brand" href="{{ url('recipes') }}">
+            <a class="navbar-brand" href="{{ url('/') }}">
                 <img src="{{ asset('Simply_Recipes_Logo.png') }}" width="85" height="24">
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
@@ -16,13 +16,7 @@
             <div class="collapse navbar-collapse" id="navbarCollapse">
                 <ul class="navbar-nav me-auto mb-2 mb-md-0">
                     <li class="nav-item">
-                        <a href="{{ url('recipes') }}" class="nav-link" aria-current="page" href="#">Recipes</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="{{ url('categories') }}" class="nav-link" aria-current="page" href="#">Categories</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="{{ url('ingredients') }}" class="nav-link" aria-current="page" href="#">Ingredients</a>
+                        <a href="{{ url('public/recipes') }}" class="nav-link" aria-current="page">All recipes</a>
                     </li>
                 </ul>
 
@@ -48,17 +42,15 @@
             </div>
         </div>
     </nav>
-
     <div class="container">
         @yield('content')
     </div>
-
     <div class="container">
-        @include('components.footer')
+        <footer class="py-3 my-4">
+            <p class="text-center text-muted">&copy; 2023 Projektą sukūrė: Ieva S.</p>
+        </footer>
     </div>
-
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
 </body>
-
 
 </html>
