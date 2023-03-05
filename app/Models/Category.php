@@ -24,10 +24,4 @@ class Category extends Model
     {
         return $this->hasMany(Recipe::class);
     }
-
-    // public function ingredients(): HasMany
-    // {
-    //     return $this->hasMany(Ingredient::class);
-    // }
-
 }

@@ -16,7 +16,7 @@ class HomeController extends Controller
 
     public function main(Request $request): View
     {
-        $recipes = Recipe::query()->latest()->limit(10)->get();
+        $recipes = Recipe::where('is_active', '=', 1)->latest()->limit(10)->get();
         $categories = Category::where('is_active', '=', 1)->get();
         $ingredients = Ingredient::where('is_active', '=', 1)->get();
         return view('public/main', [

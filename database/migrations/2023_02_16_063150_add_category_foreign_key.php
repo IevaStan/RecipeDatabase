@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::table('recipes', function (Blueprint $table) {
-            $table->unsignedBigInteger('category_id')->nullable()->after('ingredient_id');
+            $table->unsignedBigInteger('category_id')->nullable()->after('name');
             $table->foreign('category_id')->on('categories')->references('id');
         });
     }

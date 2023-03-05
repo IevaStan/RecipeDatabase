@@ -1,3 +1,11 @@
+@extends('components.layoutmin')
+
+@section('title', 'Register')
+
+@section('content')
+
+@include('components.alert.success_message')
+
 <x-guest-layout>
     <form method="POST" action="{{ route('register') }}">
         @csrf
@@ -50,3 +58,6 @@
         </div>
     </form>
 </x-guest-layout>
+
+
+@endsection

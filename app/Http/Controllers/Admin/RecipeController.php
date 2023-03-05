@@ -81,8 +81,10 @@ class RecipeController extends Controller
                     ])->max(10 * 1024)],
                 ]
             );
+            
 
             $recipe->update($request->all());
+            $recipe->is_active = $request->post('is_active', false);
             $recipe->ingredients()->detach();
 
             if ($request->file('image')) {

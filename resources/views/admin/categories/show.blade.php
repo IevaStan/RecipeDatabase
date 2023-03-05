@@ -4,13 +4,14 @@
 
 @section('content')
 
-<h1>{{ $category->name }} category</h1>
+<h1 class="text-center">{{ $category->name }} category</h1>
+<br>
 <div class="card">
     <div class="card-header">
-        {{ $category->name }}
+        Category name: {{ $category->name }}
     </div>
     <div class="card-body">
-        <p class="card-text">ID: {{ $category->id }}.</p>
+        <p class="card-text">No.: {{ $category->id }}.</p>
         <p class="card-text">
             <span> Active category?:
                 @if($category->is_active) {{'Yes'}}
@@ -20,45 +21,65 @@
         </p>
     </div>
 </div>
-<br>
-<br>
 
-
-<h5>Recipes in {{ $category->name }} category:</h5>
-@foreach($category->recipes as $recipe)
-<div class="card">
-    <div class="card-header">
-        <a href="{{ url('recipes', ['id' => $recipe->id]) }}" 
-        class="list-group-item list-group-item-action">Name: {{ $recipe->name }}</a>
-    </div>
-    <div class="card-body">
-        <ol class="list-group list-group-numbered">
-            Ingredients:
-            @if($recipe->ingredients)
-                @foreach($recipe->ingredients as $ingredient)
-                <a href="{{ url('ingredients', ['id' => $ingredient->id]) }}" 
-                class="list-group-item list-group-item-action list-group-item-secondary">{{ $ingredient->name }}</a>
-                @endforeach
-            @endif
-        </ol>
-        <p class="card-text">Description and preparation method: {{ $recipe->description }}</p>
+<br>
+<div class="text-center">
+    <div class="btn-group" role="group">
+        <div><a href="{{ route('category.edit', ['id' => $category->id]) }}" class="btn btn-primary">Edit</a></div>
+        <form action="{{ route('category.delete', ['id' => $category->id]) }}" method="post">
+            @csrf
+            @method('DELETE')
+            <button type="submit" class="btn btn-danger">Delete</button>
+        </form>
     </div>
 </div>
 <br>
-@endforeach
-<br>
 <br>
 
-
-<div class="btn-group" role="group">
-    <div><a href="{{ route('category.edit', ['id' => $category->id]) }}" class="btn btn-primary">Edit</a></div>
-    <form action="{{ route('category.delete', ['id' => $category->id]) }}" method="post">
-        @csrf
-        @method('DELETE')
-        <button type="submit" class="btn btn-danger">Delete</button>
-    </form>
+<h3 class="text-center">Recipes in {{ $category->name }} category:</h3>
+<br>
+<div class="container">
+    <div class="row row-cols-4">
+        @foreach($category->recipes as $recipe)
+        <div class="col-3 mb-3">
+            <div class="card h-100">
+                @if($recipe->image)
+                <a href="{{ url('recipes', ['id' => $recipe->id]) }}">
+                    <img src="{{ asset('storage/' . $recipe->image) }}" class="card-img-top" style="height:200px; object-fit:cover">
+                </a>
+                @else
+                no image
+                @endif
+                <div class="card-body">
+                    <h5 class="card-title" style="text-align:center">
+                        <a href="{{ url('recipes', ['id' => $recipe->id]) }}" class="list-group-item list-group-item-action">{{ $recipe->name }}</a>
+                    </h5>
+                    <p class="card-text" style="text-align:center">
+                        <small class="text-muted">
+                            Category:
+                            @if($recipe->category)
+                            {{ $recipe->category->name }}
+                            @endif
+                        </small>
+                    </p>
+                    <p class="list-group-item" style="text-align:justify"><b>Ingredients:</b>
+                        @if($recipe->ingredients)
+                        @php($i = 1)
+                        @foreach($recipe->ingredients as $key => $ingredient)
+                        <a href="{{ url('ingredients', ['id' => $ingredient->id]) }}" class="list-group-item-action" style="text-decoration: none;">
+                            {{ $ingredient->name }}@if($i != count($recipe->ingredients)),@else.@endif
+                        </a>
+                        @php ($i++)
+                        @endforeach
+                        @endif
+                    </p>
+                </div>
+            </div>
+        </div>
+        <br>
+        @endforeach
+    </div>
 </div>
 <br>
 <br>
-
 @endsection

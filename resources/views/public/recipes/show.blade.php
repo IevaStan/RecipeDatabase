@@ -1,12 +1,12 @@
 @extends('components.layoutmin')
 
-@section('title', 'Recipes')
+@section('title', 'Recipe preview')
 
 @section('content')
 
-<h1 class="text-center">Yummy {{ $recipe->name }} recipe</h1>
-
 @include('components.alert.success_message')
+<br>
+<h1 class="text-center">Yummy {{ $recipe->name }} recipe</h1>
 <br>
 <br>
 
@@ -14,7 +14,7 @@
     <div class="row">
         <div class="col text-center">
             @if($recipe->image)
-            <img src="{{ asset('storage/' . $recipe->image) }}" class="img-fluid rounded">
+            <img src="{{ asset('storage/' . $recipe->image) }}" class="rounded" style="width:100%; height:100%; object-fit:cover">
             @else
             no image
             @endif
@@ -23,13 +23,15 @@
             <div class="card h-100">
                 <div class="card-body">
                     <h2 class="card-title text-center">{{ $recipe->name }}</h5>
-                    <p class="card-text"></p>
+                        <p class="card-text"></p>
                 </div>
                 <ul class="list-group list-group-flush">
                     <li class="list-group-item">Recipe No.: {{ $recipe->id }}.</li>
                     <li class="list-group-item">Category:
                         @if($recipe->category)
-                        {{ $recipe->category->name }}
+                        <a href="{{ url('categories', ['id' => $recipe->category_id]) }}" class="list-group-item list-group-item-action">
+                            {{ $recipe->category->name }}
+                        </a>
                         @endif
                     </li>
                     <li class="list-group-item">Ingredients:
@@ -63,6 +65,4 @@
         </div>
     </div>
 </div>
-
-
 @endsection

@@ -46,8 +46,8 @@
 </div>
 
 <table class="table">
-    <tr>
-        <th scope="col" width="100">ID</th>
+    <tr style="text-align:center; text-transform:uppercase">
+        <th scope="col" width="100">No.</th>
         <th scope="col">Name</th>
         <th scope="col">Image</th>
         <th scope="col">Ingredient(s)</th>
@@ -61,31 +61,35 @@
             <a href="{{ url('public/recipes', ['id' => $recipe->id]) }}" class="list-group-item list-group-item-action">{{ $recipe->name }}</a>
         </td>
         <td>
-            <div class="col-md-4 px-0">
+            <div class="col-md-4 px-0" style="width:100%">
                 @if($recipe->image)
-                <img src="{{ asset('storage/' . $recipe->image) }}" class="img-fluid ">
+                <a href="{{ url('public/recipes', ['id' => $recipe->id]) }}">
+                    <img src="{{ asset('storage/' . $recipe->image) }}" class="rounded" style="width:100%; height:100%; object-fit:cover">
+                </a>
                 @else
                 no image
                 @endif
             </div>
         </td>
-        <td>
+        <td style="text-align:justify">
             @if($recipe->ingredients)
-
-            @foreach($recipe->ingredients as $ingredient)
-            {{ $ingredient->name }} <br>
+            @php($i = 1)
+            @foreach($recipe->ingredients as $key => $ingredient)
+            <a href="{{ url('ingredients', ['id' => $ingredient->id]) }}" class="list-group-item-action" style="text-decoration: none">
+                {{ $ingredient->name }}@if($i != count($recipe->ingredients)),@else.@endif
+            </a>
+            @php ($i++)
             @endforeach
-
             @endif
         </td>
         <td>
             @if($recipe->category)
+            <a href="{{ url('categories', ['id' => $category->id]) }}" class="list-group-item-action" style="text-decoration: none">
             {{ $recipe->category->name }}
+            </a>
             @endif
         </td>
-        <td>{{ $recipe->description }}</td>
-
-
+        <td style="text-align:justify">{{ $recipe->description }}</td>
     </tr>
     @endforeach
 </table>

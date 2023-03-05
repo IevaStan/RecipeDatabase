@@ -13,7 +13,7 @@ class IngredientController extends Controller
 {
     public function index(): View
     {
-        $ingredients = Ingredient::where('is_active', '=', 1)->paginate(10);
+        $ingredients = Ingredient::query()->paginate(10);
         return view('admin/ingredients/index', [
             'ingredients' => $ingredients
         ]);
@@ -70,7 +70,10 @@ class IngredientController extends Controller
                     'name' => 'required|max:20',
                 ]
             );
-            $ingredient->update($request->all());
+            
+            $ingredient->fill($request->all());
+            $ingredient->is_active = $request->post('is_active', false);
+            $ingredient->save();
 
             return redirect('ingredients')->with('success', 'Ingredient updated successfully!');
         }

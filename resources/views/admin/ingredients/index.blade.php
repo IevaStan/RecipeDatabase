@@ -27,15 +27,13 @@
     <tr>
         <th scope="row">{{ $ingredient->id }}</th>
         <td class="list-group-flush">
-            <a href="{{ url('ingredients', ['id' => $ingredient->id]) }}" 
-            class="list-group-item list-group-item-action">{{ $ingredient->name }}</a>
+            <a href="{{ url('ingredients', ['id' => $ingredient->id]) }}" class="list-group-item list-group-item-action">{{ $ingredient->name }}</a>
         </td>
         <td>
             @if($ingredient->recipes)
-                @foreach($ingredient->recipes as $recipe)
-                <a href="{{ url('recipes', ['id' => $recipe->id]) }}" 
-                class="list-group-item list-group-item-action">{{ $recipe->name }}</a>
-                @endforeach
+            @foreach($ingredient->recipes as $recipe)
+            <a href="{{ url('recipes', ['id' => $recipe->id]) }}" class="list-group-item list-group-item-action">{{ $recipe->name }}</a>
+            @endforeach
             @endif
         </td>
         <td>
