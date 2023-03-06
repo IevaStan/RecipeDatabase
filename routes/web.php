@@ -17,7 +17,7 @@ Route::get('/dashboard', function () {
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 
-Route::middleware(['auth', 'role'])->group(function () {
+Route::middleware(['auth'])->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
@@ -25,23 +25,29 @@ Route::middleware(['auth', 'role'])->group(function () {
     Route::get('admin/recipes', [RecipeController::class, 'index']);
     Route::get('admin/recipes/{id}', [RecipeController::class, 'show'])->whereNumber('id');
     Route::get('admin/recipes/create', [RecipeController::class, 'create']);
-    Route::any('admin/recipes/edit/{id}', [RecipeController::class, 'edit'])->name('recipe.edit');
-    Route::post('admin/recipes/store', [RecipeController::class, 'store']);
-    Route::delete('admin/recipes/delete/{id}', [RecipeController::class, 'delete'])->name('recipe.delete');
-
+    
     Route::get('admin/categories', [CategoryController::class, 'index']);
     Route::get('admin/categories/create', [CategoryController::class, 'create']);
-    Route::post('admin/categories/create', [CategoryController::class, 'store']);
-    Route::any('admin/categories/edit/{id}', [CategoryController::class, 'edit'])->name('category.edit');
-    Route::delete('admin/categories/delete/{id}', [CategoryController::class, 'delete'])->name('category.delete');
     Route::get('admin/categories/{id}', [CategoryController::class, 'show']);
 
     Route::get('admin/ingredients', [IngredientController::class, 'index']);
     Route::get('admin/ingredients/create', [IngredientController::class, 'create']);
+    Route::get('admin/ingredients/{ingredient}', [IngredientController::class, 'show']);
+});
+
+Route::middleware(['auth', 'role'])->group(function () {
+    Route::any('admin/recipes/edit/{id}', [RecipeController::class, 'edit'])->name('recipe.edit');
+    Route::post('admin/recipes/store', [RecipeController::class, 'store']);
+    Route::delete('admin/recipes/delete/{id}', [RecipeController::class, 'delete'])->name('recipe.delete');
+    
+    Route::post('admin/categories/create', [CategoryController::class, 'store']);
+    Route::any('admin/categories/edit/{id}', [CategoryController::class, 'edit'])->name('category.edit');
+    Route::delete('admin/categories/delete/{id}', [CategoryController::class, 'delete'])->name('category.delete');
+
     Route::post('admin/ingredients/create', [IngredientController::class, 'store']);
     Route::any('admin/ingredients/edit/{id}', [IngredientController::class, 'edit'])->name('ingredient.edit');
     Route::delete('admin/ingredients/delete/{id}', [IngredientController::class, 'delete'])->name('ingredient.delete');
-    Route::get('admin/ingredients/{ingredient}', [IngredientController::class, 'show']);
+   
 });
 
 require __DIR__ . '/auth.php';
