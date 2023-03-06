@@ -7,7 +7,7 @@
 <body>
     <nav class="navbar navbar-expand-md navbar-dark bg-primary mb-4">
         <div class="container">
-            <a class="navbar-brand" href="{{ url('recipes') }}">
+            <a class="navbar-brand" href="{{ url('admin/recipes') }}">
                 <img src="{{ asset('Simply_Recipes_Logo.png') }}" width="85" height="24">
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
@@ -16,13 +16,13 @@
             <div class="collapse navbar-collapse" id="navbarCollapse">
                 <ul class="navbar-nav me-auto mb-2 mb-md-0">
                     <li class="nav-item">
-                        <a href="{{ url('recipes') }}" class="nav-link" aria-current="page" href="#">Recipes</a>
+                        <a href="{{ url('admin/recipes') }}" class="nav-link" aria-current="page" href="#">Recipes</a>
                     </li>
                     <li class="nav-item">
-                        <a href="{{ url('categories') }}" class="nav-link" aria-current="page" href="#">Categories</a>
+                        <a href="{{ url('admin/categories') }}" class="nav-link" aria-current="page" href="#">Categories</a>
                     </li>
                     <li class="nav-item">
-                        <a href="{{ url('ingredients') }}" class="nav-link" aria-current="page" href="#">Ingredients</a>
+                        <a href="{{ url('admin/ingredients') }}" class="nav-link" aria-current="page" href="#">Ingredients</a>
                     </li>
                 </ul>
 

@@ -4,23 +4,4 @@
 <title>Recipes database - @yield('title')</title>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" rel="stylesheet">
-{{--
-<link href="{{ asset('js/lux.css') }}" rel="stylesheet" type="text/css" >
-<style>
-    body {
-        background-image: url({{asset('background.jpg')}});
-        background-size: cover;
-        background-attachment: fixed;
-    }
-</style>
-
-
-background-image: url({{asset('background.jpg')}});
-background-color: rgba(255,190,188,0.5);
-background-size: cover;
-background-attachment: fixed;
-
-flatly
-lux
-quartz
---}}
+<link href="{{ asset('js/lux.css') }}" rel="stylesheet" type="text/css">

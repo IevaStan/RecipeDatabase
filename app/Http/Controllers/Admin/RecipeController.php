@@ -81,7 +81,7 @@ class RecipeController extends Controller
                     ])->max(10 * 1024)],
                 ]
             );
-            
+
 
             $recipe->update($request->all());
             $recipe->is_active = $request->post('is_active', false);
@@ -99,7 +99,7 @@ class RecipeController extends Controller
             $ingredients = Ingredient::find($request->post('ingredient_id'));
             $recipe->ingredients()->attach($ingredients);
 
-            return redirect('recipes')->with('success', 'Recipe updated successfully!');
+            return redirect('admin/recipes')->with('success', 'Recipe updated successfully!');
         }
 
         return view('admin/recipes/edit', [
@@ -126,17 +126,18 @@ class RecipeController extends Controller
 
         $recipe = Recipe::create($request->all());
 
-        $file = $request->file('image');
-        // $path = $file->store('recipe_images');
-        $path = Storage::disk('public')->put('recipe_images', $file);
-        $recipe->image = $path;
+        if ($request->file('image')) {
+            $file = $request->file('image');
+            $path = Storage::disk('public')->put('recipe_images', $file);
+            $recipe->image = $path;
+        }
         $recipe->save();
 
 
         $ingredients = Ingredient::find($request->post('ingredient_id'));
         $recipe->ingredients()->attach($ingredients);
 
-        return redirect('recipes')
+        return redirect('admin/recipes')
             ->with('success', 'New recipe successfully added!');
     }
 
@@ -147,6 +148,6 @@ class RecipeController extends Controller
             abort(404);
         }
         $recipe->delete();
-        return redirect('recipes')->with('success', 'Recipe removed successfully!');
+        return redirect('admin/recipes')->with('success', 'Recipe removed successfully!');
     }
 }

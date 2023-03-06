@@ -18,7 +18,7 @@
 </div>
 @endif
 
-<form action="{{ url('recipes/store') }}" method="post" class="row g-3" enctype="multipart/form-data">
+<form action="{{ url('admin/recipes/store') }}" method="post" class="row g-3" enctype="multipart/form-data">
 
     @csrf
     <div class="form-group">

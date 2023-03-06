@@ -10,7 +10,7 @@
 
 <div class="row">
     <div class="col">
-        <form action="{{ url('recipes') }}" method="get">
+        <form action="{{ url('admin/recipes') }}" method="get">
             <div class="form-group">
 
                 <div class="form-group">
@@ -22,7 +22,7 @@
                 <select name="category_id" class="form-control">
                     <option value="">---</option>
                     @foreach($categories as $category)
-                    <option @if($category->id == $category_id) selected @endif
+                    <option class="dropdown-item" @if($category->id == $category_id) selected @endif
                         value="{{ $category->id }}">{{ $category->name }}
                     </option>
                     @endforeach
@@ -35,7 +35,7 @@
                     <button type="submit" class="btn btn-primary">Filter</button>
                 </div>
                 <div>
-                    <a href=" {{ url('recipes') }}" class="btn btn-secondary">Clear filter</a>
+                    <a href=" {{ url('admin/recipes') }}" class="btn btn-secondary">Clear filter</a>
                 </div>
             </div>
             <br>
@@ -46,7 +46,7 @@
 </div>
 
 <div class="row">
-    <div class="col"> <a href="{{ url('recipes/create') }}" class="btn btn-primary">Create</a> </div>
+    <div class="col"> <a href="{{ url('admin/recipes/create') }}" class="btn btn-primary">Create</a> </div>
 </div>
 
 <table class="table">
@@ -64,12 +64,12 @@
     <tr>
         <th scope="row">{{ $recipe->id }}</th>
         <td class="list-group-flush">
-            <a href="{{ url('recipes', ['id' => $recipe->id]) }}" class="list-group-item list-group-item-action">{{ $recipe->name }}</a>
+            <a href="{{ url('admin/recipes', ['id' => $recipe->id]) }}" class="list-group-item list-group-item-action">{{ $recipe->name }}</a>
         </td>
         <td>
             <div class="col-md-4 px-0" style="width:100%">
                 @if($recipe->image)
-                <a href="{{ url('public/recipes', ['id' => $recipe->id]) }}">
+                <a href="{{ url('admin/recipes', ['id' => $recipe->id]) }}">
                     <img src="{{ asset('storage/' . $recipe->image) }}" class="rounded" style="width:100%; height:100%; object-fit:cover">
                 </a>
                 @else
@@ -81,7 +81,7 @@
             @if($recipe->ingredients)
             @php($i = 1)
             @foreach($recipe->ingredients as $key => $ingredient)
-            <a href="{{ url('ingredients', ['id' => $ingredient->id]) }}" class="list-group-item-action" style="text-decoration: none">
+            <a href="{{ url('admin/ingredients', ['id' => $ingredient->id]) }}" class="list-group-item-action" style="text-decoration: none">
                 {{ $ingredient->name }}@if($i != count($recipe->ingredients)),@else.@endif
             </a>
             @php ($i++)
@@ -90,7 +90,7 @@
         </td>
         <td>
             @if($recipe->category)
-            <a href="{{ url('categories', ['id' => $category->id]) }}" class="list-group-item-action" style="text-decoration: none">
+            <a href="{{ url('admin/categories', ['id' => $category->id]) }}" class="list-group-item-action" style="text-decoration: none">
                 {{ $recipe->category->name }}
             </a>
             @endif

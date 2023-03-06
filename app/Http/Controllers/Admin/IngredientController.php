@@ -35,7 +35,7 @@ class IngredientController extends Controller
         );
 
         Ingredient::create($request->all());
-        return redirect('ingredients')
+        return redirect('admin/ingredients')
             ->with('success', 'Ingredient successfully added!');
     }
 
@@ -53,7 +53,7 @@ class IngredientController extends Controller
             abort(404);
         }
         $ingredient->delete();
-        return redirect('ingredients')->with('success', 'Ingredient removed successfully!');
+        return redirect('admin/ingredients')->with('success', 'Ingredient removed successfully!');
     }
 
 
@@ -75,7 +75,7 @@ class IngredientController extends Controller
             $ingredient->is_active = $request->post('is_active', false);
             $ingredient->save();
 
-            return redirect('ingredients')->with('success', 'Ingredient updated successfully!');
+            return redirect('admin/ingredients')->with('success', 'Ingredient updated successfully!');
         }
 
         return view('admin/ingredients/edit', [

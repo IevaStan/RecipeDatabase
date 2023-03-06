@@ -10,7 +10,7 @@
 
 <div class="row">
     <div class="col">
-        <a href="{{ url('ingredients/create') }}" class="btn btn-primary">Create</a>
+        <a href="{{ url('admin/ingredients/create') }}" class="btn btn-primary">Create</a>
     </div>
 </div>
 
@@ -27,12 +27,12 @@
     <tr>
         <th scope="row">{{ $ingredient->id }}</th>
         <td class="list-group-flush">
-            <a href="{{ url('ingredients', ['id' => $ingredient->id]) }}" class="list-group-item list-group-item-action">{{ $ingredient->name }}</a>
+            <a href="{{ url('admin/ingredients', ['id' => $ingredient->id]) }}" class="list-group-item list-group-item-action">{{ $ingredient->name }}</a>
         </td>
         <td>
             @if($ingredient->recipes)
             @foreach($ingredient->recipes as $recipe)
-            <a href="{{ url('recipes', ['id' => $recipe->id]) }}" class="list-group-item list-group-item-action">{{ $recipe->name }}</a>
+            <a href="{{ url('admin/recipes', ['id' => $recipe->id]) }}" class="list-group-item list-group-item-action">{{ $recipe->name }}</a>
             @endforeach
             @endif
         </td>

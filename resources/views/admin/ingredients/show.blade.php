@@ -9,11 +9,11 @@
 <br>
 <div class="card">
     <div class="card-header">
-        Name: {{ $ingredient->name }}
+        <span class="fw-bold">Name: </span>{{ $ingredient->name }}
     </div>
     <div class="card-body">
-        <p class="card-text">No.: {{ $ingredient->id }}.</p>
-        <p class="card-text">Active ingredient?
+        <p class="card-text"><span class="fw-bold">No.: </span>{{ $ingredient->id }}.</p>
+        <p class="card-text"><span class="fw-bold">Active ingredient? </span>
             <span>
                 @if($ingredient->is_active) {{'Yes'}}
                 @else{{'No'}}
@@ -44,7 +44,7 @@
         <div class="col-3 mb-3">
             <div class="card h-100">
                 @if($recipe->image)
-                <a href="{{ url('recipes', ['id' => $recipe->id]) }}">
+                <a href="{{ url('admin/recipes', ['id' => $recipe->id]) }}">
                     <img src="{{ asset('storage/' . $recipe->image) }}" class="card-img-top" style="height:200px; object-fit:cover">
                 </a>
                 @else
@@ -52,7 +52,7 @@
                 @endif
                 <div class="card-body">
                     <h5 class="card-title" style="text-align:center">
-                        <a href="{{ url('recipes', ['id' => $recipe->id]) }}" class="list-group-item list-group-item-action">{{ $recipe->name }}</a>
+                        <a href="{{ url('admin/recipes', ['id' => $recipe->id]) }}" class="list-group-item list-group-item-action">{{ $recipe->name }}</a>
                     </h5>
                     <p class="card-text" style="text-align:center">
                         <small class="text-muted">
@@ -62,11 +62,11 @@
                             @endif
                         </small>
                     </p>
-                    <p class="list-group-item" style="text-align:justify"><b>Ingredients:</b>
+                    <p class="list-group-item" style="text-align:justify"><span class="fw-bold">Ingredients:</span>
                         @if($recipe->ingredients)
                         @php($i = 1)
                         @foreach($recipe->ingredients as $key => $ingredient)
-                        <a href="{{ url('ingredients', ['id' => $ingredient->id]) }}" class="list-group-item-action" style="text-decoration: none;">
+                        <a href="{{ url('admin/ingredients', ['id' => $ingredient->id]) }}" class="list-group-item-action" style="text-decoration: none;">
                             {{ $ingredient->name }}@if($i != count($recipe->ingredients)),@else.@endif
                         </a>
                         @php ($i++)

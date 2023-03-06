@@ -25,19 +25,19 @@
                         <p class="card-text"></p>
                 </div>
                 <ul class="list-group list-group-flush">
-                    <li class="list-group-item">Recipe No.: {{ $recipe->id }}.</li>
-                    <li class="list-group-item">Category:
+                    <li class="list-group-item"><span class="fw-bold">Recipe No.: </span>{{ $recipe->id }}.</li>
+                    <li class="list-group-item"><span class="fw-bold">Category: </span>
                         @if($recipe->category)
-                        <a href="{{ url('categories', ['id' => $recipe->category_id]) }}" class="list-group-item list-group-item-action">
+                        <a href="{{ url('admin/categories', ['id' => $recipe->category_id]) }}" class="list-group-item list-group-item-action">
                             {{ $recipe->category->name }}
                         </a>
                         @endif
                     </li>
-                    <li class="list-group-item">Ingredients:
+                    <li class="list-group-item"><span class="fw-bold">Ingredients: </span>
                         <ol class="list-group list-group-numbered">
                             @if($recipe->ingredients)
                             @foreach($recipe->ingredients as $ingredient)
-                            <a href="{{ url('ingredients', ['id' => $ingredient->id]) }}" class="list-group-item list-group-item-action list-group-item-secondary">
+                            <a href="{{ url('admin/ingredients', ['id' => $ingredient->id]) }}" class="list-group-item list-group-item-action list-group-item-secondary">
                                 {{ $ingredient->name }}
                             </a>
                             @endforeach

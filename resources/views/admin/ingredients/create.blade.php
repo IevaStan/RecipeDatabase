@@ -5,7 +5,7 @@
 @section('content')
 <h1>Add a new ingredient</h1>
 
-<form action="{{ url('ingredients/create') }}" method="post" class="row g-3">
+<form action="{{ url('admin/ingredients/create') }}" method="post" class="row g-3">
 
     @if ($errors->any())
         <div class="alert alert-danger">

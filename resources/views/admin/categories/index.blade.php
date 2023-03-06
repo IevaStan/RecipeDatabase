@@ -9,7 +9,7 @@
 @include('components.alert.success_message')
 
 <div class="row">
-    <div class="col"> <a href="{{ url('categories/create') }}" class="btn btn-primary">Create</a></div>
+    <div class="col"> <a href="{{ url('admin/categories/create') }}" class="btn btn-primary">Create</a></div>
 </div>
 
 <table class="table">
@@ -25,13 +25,13 @@
     <tr>
         <th scope="row">{{ $category->id }}</th>
         <td class="list-group-flush">
-            <a href="{{ url('categories', ['id' => $category->id]) }}" 
+            <a href="{{ url('admin/categories', ['id' => $category->id]) }}" 
             class="list-group-item list-group-item-action">{{ $category->name }}</a>
         </td>
         <td>
             @if($category->recipes)
             @foreach($category->recipes as $recipe)
-            <a href="{{ url('recipes', ['id' => $recipe->id]) }}" 
+            <a href="{{ url('admin/recipes', ['id' => $recipe->id]) }}" 
             class="list-group-item list-group-item-action">{{ $recipe->name }}</a>
             @endforeach
             @endif

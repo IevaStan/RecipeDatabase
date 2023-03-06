@@ -75,7 +75,7 @@
             @if($recipe->ingredients)
             @php($i = 1)
             @foreach($recipe->ingredients as $key => $ingredient)
-            <a href="{{ url('ingredients', ['id' => $ingredient->id]) }}" class="list-group-item-action" style="text-decoration: none">
+            <a href="{{ url('admin/ingredients', ['id' => $ingredient->id]) }}" class="list-group-item-action" style="text-decoration: none">
                 {{ $ingredient->name }}@if($i != count($recipe->ingredients)),@else.@endif
             </a>
             @php ($i++)
@@ -84,7 +84,7 @@
         </td>
         <td>
             @if($recipe->category)
-            <a href="{{ url('categories', ['id' => $category->id]) }}" class="list-group-item-action" style="text-decoration: none">
+            <a href="{{ url('admin/categories', ['id' => $category->id]) }}" class="list-group-item-action" style="text-decoration: none">
             {{ $recipe->category->name }}
             </a>
             @endif

@@ -6,7 +6,7 @@
 
 <h1>Create new category</h1>
 
-<form action="{{ url('categories/create') }}" method="post" class="row g-3">
+<form action="{{ url('admin/categories/create') }}" method="post" class="row g-3">
 
     @if ($errors->any())
     <div class="alert alert-danger">

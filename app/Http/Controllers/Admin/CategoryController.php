@@ -36,7 +36,7 @@ class CategoryController extends Controller
             ]
         );
         Category::create($request->all());
-        return redirect('categories')
+        return redirect('admin/categories')
             ->with('success', 'Category created successfully!');
     }
 
@@ -65,7 +65,7 @@ class CategoryController extends Controller
             $category->is_active = $request->post('is_active', false);
             $category->save();
 
-            return redirect('categories')->with('success', 'Category updated successfully!');
+            return redirect('admin/categories')->with('success', 'Category updated successfully!');
         }
 
         return view('admin/categories/edit', [
@@ -80,6 +80,6 @@ class CategoryController extends Controller
             abort(404);
         }
         $category->delete();
-        return redirect('categories')->with('success', 'Category removed successfully!');
+        return redirect('admin/categories')->with('success', 'Category removed successfully!');
     }
 }
