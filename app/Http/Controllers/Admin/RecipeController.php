@@ -25,8 +25,8 @@ class RecipeController extends Controller
             $recipes->where('category_id', '=', $request->query('category_id'));
         }
 
-        $categories = Category::where('is_active', '=', 1)->get();
-        $ingredients = Ingredient::where('is_active', '=', 1)->get();
+        $categories = Category::all();
+        $ingredients = Ingredient::all();
         return view('admin/recipes/index', [
             'recipes' => $recipes->paginate(10),
             'categories' => $categories,
